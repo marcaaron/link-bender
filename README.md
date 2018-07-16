@@ -1,6 +1,6 @@
 ## React on Rails & GraphQL Ruby Example Project
 
-###( In Progress )
+*In Progress...*
 
 This is a very simple React on Rails example app that leverages the [How To GraphQL – GraphQL Ruby tutorial](https://www.howtographql.com/graphql-ruby/). Extending the Rails GraphQL API and implementing a React on Rails client with Apollo to hit the rails server.
 
