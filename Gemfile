@@ -79,3 +79,7 @@ gem 'bcrypt', '~> 3.1.7'
 # Search Object
 gem 'search_object', '1.2.0'
 gem 'search_object_graphql', '0.1'
+
+# React on Rails
+gem "react_on_rails", "11.0.9" # Update to the current version
+gem "webpacker", "~> 3" # Newer versions might be supported
