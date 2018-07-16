@@ -83,3 +83,5 @@ gem 'search_object_graphql', '0.1'
 # React on Rails
 gem "react_on_rails", "11.0.9" # Update to the current version
 gem "webpacker", "~> 3" # Newer versions might be supported
+
+gem 'mini_racer', platforms: :ruby
