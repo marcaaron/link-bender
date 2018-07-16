@@ -65,7 +65,5 @@ production:
   # Production depends on precompilation of packs prior to booting for performance.
   compile: false
 
-  public_output_path: webpack/production
-
   # Cache manifest.json for performance
   cache_manifest: true
