@@ -41732,7 +41732,7 @@ module.exports = copyArray;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_apollo_boost___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_apollo_boost__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_apollo__ = __webpack_require__(/*! react-apollo */ 107);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_apollo___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react_apollo__);
-var _templateObject = _taggedTemplateLiteral(['\n{\n  allLinks{\n    id\n    description\n    postedBy {\n      id\n      name\n      votes{\n        id\n      }\n    }\n    votes {\n      id\n    }\n  }\n}\n'], ['\n{\n  allLinks{\n    id\n    description\n    postedBy {\n      id\n      name\n      votes{\n        id\n      }\n    }\n    votes {\n      id\n    }\n  }\n}\n']);
+var _templateObject = _taggedTemplateLiteral(['\n  {\n    allLinks{\n      id\n      description\n    }\n  }\n'], ['\n  {\n    allLinks{\n      id\n      description\n    }\n  }\n']);
 
 function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
@@ -41775,4 +41775,4 @@ var App = function App() {
 
 /***/ })
 /******/ ]);
-//# sourceMappingURL=link-app-bundle-03f131954f0d48f13f52.js.map
+//# sourceMappingURL=link-app-bundle-54573164709502d6eb51.js.map

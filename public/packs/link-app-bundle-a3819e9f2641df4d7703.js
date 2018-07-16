@@ -31613,7 +31613,7 @@ function context() {
 
 
 
-var client = new __WEBPACK_IMPORTED_MODULE_1_apollo_boost___default.a({ uri: 'https://localhost:3000/graphql' });
+var client = new __WEBPACK_IMPORTED_MODULE_1_apollo_boost___default.a({ uri: 'https://pacific-lowlands-20399.herokuapp.com/graphql' });
 
 var Root = function Root() {
   return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -41732,7 +41732,7 @@ module.exports = copyArray;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_apollo_boost___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_apollo_boost__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_apollo__ = __webpack_require__(/*! react-apollo */ 107);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_apollo___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react_apollo__);
-var _templateObject = _taggedTemplateLiteral(['\n{\n  allLinks{\n    id\n    description\n    postedBy {\n      id\n      name\n      votes{\n        id\n      }\n    }\n    votes {\n      id\n    }\n  }\n}\n'], ['\n{\n  allLinks{\n    id\n    description\n    postedBy {\n      id\n      name\n      votes{\n        id\n      }\n    }\n    votes {\n      id\n    }\n  }\n}\n']);
+var _templateObject = _taggedTemplateLiteral(['\nquery {\n  allLinks{\n    id\n    description\n    postedBy {\n      id\n      name\n      votes{\n        id\n      }\n    }\n    votes {\n      id\n    }\n  }\n}\n'], ['\nquery {\n  allLinks{\n    id\n    description\n    postedBy {\n      id\n      name\n      votes{\n        id\n      }\n    }\n    votes {\n      id\n    }\n  }\n}\n']);
 
 function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
@@ -41775,4 +41775,4 @@ var App = function App() {
 
 /***/ })
 /******/ ]);
-//# sourceMappingURL=link-app-bundle-b0deef7eda8638b59466.js.map
+//# sourceMappingURL=link-app-bundle-a3819e9f2641df4d7703.js.map

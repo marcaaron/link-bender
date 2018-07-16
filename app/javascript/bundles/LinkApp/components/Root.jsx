@@ -3,7 +3,7 @@ import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 import App from './App';
 
-const client = new ApolloClient({ uri: 'https://pacific-lowlands-20399.herokuapp.com/graphql' });
+const client = new ApolloClient({ uri: 'http://localhost:3000/graphql' });
 
 const Root = () => (
   <ApolloProvider client={client}>

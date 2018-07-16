@@ -3,22 +3,12 @@ import { gql } from 'apollo-boost';
 import { Query } from 'react-apollo';
 
 const GET_LINKS = gql`
-{
-  allLinks{
-    id
-    description
-    postedBy {
+  {
+    allLinks{
       id
-      name
-      votes{
-        id
-      }
-    }
-    votes {
-      id
+      description
     }
   }
-}
 `;
 
 const App = () => (
