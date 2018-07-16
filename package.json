@@ -14,5 +14,9 @@
   },
   "devDependencies": {
     "webpack-dev-server": "2.11.2"
-  }
+  },
+  "cacheDirectories": [
+  "node_modules",
+  "client/node_modules"
+]
 }
