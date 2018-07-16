@@ -85,3 +85,5 @@ gem "react_on_rails", "11.0.9" # Update to the current version
 gem "webpacker", "~> 3" # Newer versions might be supported
 
 gem 'mini_racer', platforms: :ruby
+
+gem 'rack-cors', require: 'rack/cors'
