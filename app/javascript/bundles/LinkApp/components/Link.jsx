@@ -17,7 +17,7 @@ class Link extends Component {
       return (
         <li>
           <a href={url}>{description}</a>
-          {/* <button id={linkId} onClick={handleClick}>Delete</button> */}
+          <button id={linkId} onClick={handleClick}>Delete</button>
         </li>
       );
     }

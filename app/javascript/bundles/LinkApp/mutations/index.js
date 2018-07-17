@@ -20,9 +20,7 @@ export const CREATE_USER = gql`
 
 export const DELETE_LINK = gql`
   mutation deleteLink($id:ID!){
-    deleteLink(id:$id){
-      id
-    }
+    deleteLink(id:$id)
   }
 `
 
