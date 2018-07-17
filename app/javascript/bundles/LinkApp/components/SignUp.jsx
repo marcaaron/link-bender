@@ -1,56 +1,25 @@
 import React, { Component } from 'react';
-import { gql } from 'apollo-boost';
 import { graphql, compose } from 'react-apollo';
 
-const CREATE_USER = gql`
-  mutation createUser($name:String!, $email:String!, $password:String!){
-    createUser(
-      name: $name,
-      authProvider: {
-        email: {
-          email: $email,
-          password: $password
-        }
-      }
-    ){
-      id
-      email
-      name
-    }
-  }
-`;
-
-const SIGN_IN_USER = gql`
-  mutation signinUser($email:String!, $password:String!){
-    signinUser(
-      email: {
-        email: $email,
-        password: $password
-      }
-    ){
-      token
-      user {
-        id
-      }
-    }
-  }
-`;
+import { CREATE_USER, SIGN_IN_USER, UPDATE_CLIENT_INFO } from '../mutations';
+import { GET_USER_INFO } from '../queries';
 
 class SignUp extends Component {
-  state = {
-    name:'',
-    email:'',
-    password:'',
-    token: null
-  }
 
   handleChange = (e) => {
-    this.setState({[e.target.id]:e.target.value});
+    const { data: { userInfo } } = this.props;
+    const updatedInfo = {...userInfo};
+    const field = e.target.id;
+    const value = e.target.value;
+    updatedInfo[field] = value;
+    this.props.updateClientInfo({
+      variables: updatedInfo
+    })
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const { name, email, password } = this.state;
+    const { data: { userInfo: { name, email, password } } } = this.props;
     this.props.createUser({
       variables: {
         name,
@@ -67,26 +36,31 @@ class SignUp extends Component {
       })
       .then((res)=>{
         const token = res.data.signinUser.token;
-        this.setState({token})
+        this.props.updateClientInfo({
+          variables:{name, email, password, token}
+        })
       })
     })
     .catch(err=>console.warn(err));
   };
 
   render(){
-    const { name, email, password, token } = this.state;
     const { handleChange, handleSubmit } = this;
-    if(!this.state.token){
+    const { data: { userInfo: { name, email, token, password } } } = this.props;
+    if(!token){
       return(
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="name">Name:</label>
-          <input id="name" name="name" onChange={handleChange} type="text" value={name}/>
-          <label htmlFor="email">E-Mail:</label>
-          <input id="email" name="email" onChange={handleChange} type="text" value={email}/>
-          <label htmlFor="password">Password:</label>
-          <input id="password" name="password" onChange={handleChange} type="password" value={password}/>
-          <button type="submit">Submit</button>
-        </form>
+        <div>
+          <h2>Sign Up</h2>
+          <form className="signup-form" onSubmit={handleSubmit}>
+            <label htmlFor="name">Name:</label>
+            <input id="name" name="name" onChange={handleChange} type="text" value={name}/>
+            <label htmlFor="email">E-Mail:</label>
+            <input id="email" name="email" onChange={handleChange} type="text" value={email}/>
+            <label htmlFor="password">Password:</label>
+            <input id="password" name="password" onChange={handleChange} type="password" value={password}/>
+            <button type="submit">Submit</button>
+          </form>
+        </div>
       )
     }else{
       return <h2>Welcome {name}!</h2>;
@@ -96,5 +70,7 @@ class SignUp extends Component {
 
 export default compose(
   graphql(CREATE_USER, {name: 'createUser'}),
-  graphql(SIGN_IN_USER, {name: 'signinUser'})
+  graphql(SIGN_IN_USER, {name: 'signinUser'}),
+  graphql(UPDATE_CLIENT_INFO, {name: 'updateClientInfo'}),
+  graphql(GET_USER_INFO)
 )(SignUp);
