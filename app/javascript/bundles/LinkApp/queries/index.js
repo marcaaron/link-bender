@@ -12,6 +12,15 @@ export const GET_USER_INFO = gql`
   }
 `;
 
+export const GET_CLIENT_LINK = gql`
+  query {
+    linkInfo @client {
+      url
+      description
+    }
+  }
+`;
+
 export const GET_AUTH_METHOD = gql`
   query {
     toggleAuth @client {

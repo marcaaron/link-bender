@@ -6,7 +6,6 @@ import { SIGN_IN_USER, CREATE_USER, UPDATE_CLIENT_INFO } from '../mutations';
 class LogIn extends Component {
   handleChange = (e) => {
     const { data: { userInfo } } = this.props;
-    console.log(userInfo);
     const updatedInfo = {...userInfo};
     const field = e.target.id;
     const value = e.target.value;

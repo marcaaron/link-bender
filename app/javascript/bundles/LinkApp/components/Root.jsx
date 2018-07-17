@@ -15,6 +15,11 @@ const client = new ApolloClient({
         token: null,
         id: ''
       },
+      linkInfo: {
+        __typename: "LinkInfo",
+        description: '',
+        url: ''
+      },
       toggleAuth: {
         __typename: "ToggleAuth",
         isNewUser: false
@@ -44,6 +49,18 @@ const client = new ApolloClient({
               toggleAuth: {
                 __typename: "ToggleAuth",
                 isNewUser
+              }
+            }
+          });
+          return null;
+        },
+        updateClientLink: (_, { url, description }, { cache }) => {
+          cache.writeData({
+            data: {
+              linkInfo: {
+                __typename: "ToggleAuth",
+                url,
+                description
               }
             }
           });

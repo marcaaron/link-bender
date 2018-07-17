@@ -42,6 +42,12 @@ export const UPDATE_CLIENT_INFO = gql`
   }
 `;
 
+export const UPDATE_CLIENT_LINK = gql`
+  mutation updateClientLink($url:String, $description:String){
+    updateClientLink(url: $url, description: $description) @client
+  }
+`;
+
 export const TOGGLE_AUTH = gql`
   mutation toggleAuthType($isNewUser: Boolean!){
     toggleAuthType(isNewUser: $isNewUser) @client
