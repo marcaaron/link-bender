@@ -46,25 +46,18 @@ class SignUp extends Component {
 
   render(){
     const { handleChange, handleSubmit } = this;
-    const { data: { userInfo: { name, email, token, password } } } = this.props;
-    if(!token){
-      return(
-        <div>
-          <h2>Sign Up</h2>
-          <form className="signup-form" onSubmit={handleSubmit}>
-            <label htmlFor="name">Name:</label>
-            <input id="name" name="name" onChange={handleChange} type="text" value={name}/>
-            <label htmlFor="email">E-Mail:</label>
-            <input id="email" name="email" onChange={handleChange} type="text" value={email}/>
-            <label htmlFor="password">Password:</label>
-            <input id="password" name="password" onChange={handleChange} type="password" value={password}/>
-            <button type="submit">Submit</button>
-          </form>
-        </div>
-      )
-    }else{
-      return <h2>Welcome {name}!</h2>;
-    }
+    const { data: { userInfo: { name, email, password } } } = this.props;
+    return(
+      <form className="signup-form" onSubmit={handleSubmit}>
+        <label htmlFor="name">Name:</label>
+        <input id="name" name="name" onChange={handleChange} type="text" value={name}/>
+        <label htmlFor="email">E-Mail:</label>
+        <input id="email" name="email" onChange={handleChange} type="text" value={email}/>
+        <label htmlFor="password">Password:</label>
+        <input id="password" name="password" onChange={handleChange} type="password" value={password}/>
+        <button type="submit">Submit</button>
+      </form>
+    )
   }
 }
 

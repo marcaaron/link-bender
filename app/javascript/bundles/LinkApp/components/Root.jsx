@@ -12,13 +12,18 @@ const client = new ApolloClient({
         name: '',
         email: '',
         password: '',
-        token: null
+        token: null,
+        id: ''
+      },
+      toggleAuth: {
+        __typename: "ToggleAuth",
+        isNewUser: false
       }
     },
     resolvers: {
       Query: {},
       Mutation: {
-        updateClientInfo: (_, { name, email, password, token }, { cache }) => {
+        updateClientInfo: (_, { name, email, password, token, id }, { cache }) => {
           cache.writeData({
             data: {
               userInfo: {
@@ -26,7 +31,19 @@ const client = new ApolloClient({
                 name,
                 email,
                 password,
-                token
+                token,
+                id
+              }
+            }
+          });
+          return null;
+        },
+        toggleAuthType: (_, { isNewUser }, { cache }) => {
+          cache.writeData({
+            data: {
+              toggleAuth: {
+                __typename: "ToggleAuth",
+                isNewUser
               }
             }
           });

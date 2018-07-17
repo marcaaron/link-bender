@@ -3,7 +3,7 @@ import { gql } from 'apollo-boost';
 import { Query } from 'react-apollo';
 import Link from './Link';
 import CreateLink from './CreateLink';
-import SignUp from './SignUp';
+import Auth from './Auth';
 
 const GET_LINKS = gql`
   {
@@ -23,7 +23,7 @@ const App = () => (
       return (
         <div>
           <h1>Link Share</h1>
-          <SignUp/>
+          <Auth/>
           <CreateLink/>
           <ul>
             {

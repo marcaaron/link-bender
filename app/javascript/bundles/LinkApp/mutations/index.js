@@ -29,13 +29,48 @@ export const SIGN_IN_USER = gql`
       token
       user {
         id
+        email
+        name
       }
     }
   }
 `;
 
 export const UPDATE_CLIENT_INFO = gql`
-  mutation updateClientInfo($name:String, $email:String, $password:String, $token:String){
-    updateClientInfo(name: $name, email: $email, password: $password, token: $token) @client
+  mutation updateClientInfo($name:String, $email:String, $password:String, $token:String, $id:ID){
+    updateClientInfo(name: $name, email: $email, password: $password, token: $token, id:$id) @client
+  }
+`;
+
+export const TOGGLE_AUTH = gql`
+  mutation toggleAuthType($isNewUser: Boolean!){
+    toggleAuthType(isNewUser: $isNewUser) @client
+  }
+`;
+
+export const CREATE_LINK = gql`
+  mutation createLink($url:String!, $description:String!){
+    createLink(url:$url, description:$description){
+      id
+      url
+      description
+      postedBy {
+        id
+        name
+      }
+    }
+  }
+`;
+
+export const CREATE_VOTE = gql`
+  mutation createVote($linkId:ID){
+    createVote(linkId:$linkId){
+      link {
+        description
+      }
+      user {
+        name
+      }
+    }
   }
 `;

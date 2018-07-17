@@ -1,5 +1,24 @@
-.signup-form {
+body {
+  font-family: sans-serif;
+}
+
+.signup-form, .login-form {
   display: flex;
   flex-direction: column;
   width: 320px;
+}
+
+.auth-box {
+  h2 {
+    display: flex;
+  }
+  &__btn{
+    &:hover{
+      color: rgba(0,0,0,0.2);
+      cursor: pointer;
+    }
+  }
+  &__btn--active{
+    text-decoration: underline;
+  }
 }
