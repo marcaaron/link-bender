@@ -16,7 +16,7 @@ import { persistCache } from 'apollo-cache-persist';
 
 const client = new ApolloClient({
   // cache,
-  uri: 'http://localhost:3000/graphql',
+  uri: 'https://pacific-lowlands-20399.herokuapp.com/graphql',
   clientState: {
     defaults: {
       userInfo: {
