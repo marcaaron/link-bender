@@ -22,6 +22,12 @@ export const DELETE_LINK = gql`
   mutation deleteLink($id:ID!){
     deleteLink(id:$id)
   }
+`;
+
+export const DELETE_VOTE = gql`
+  mutation deleteVote($user_id:ID!, $link_id:ID!){
+    deleteLink(user_id:$user_id, link_id:$link_id)
+  }
 `
 
 export const SIGN_IN_USER = gql`
@@ -75,8 +81,8 @@ export const CREATE_LINK = gql`
 `;
 
 export const CREATE_VOTE = gql`
-  mutation createVote($linkId:ID){
-    createVote(linkId:$linkId){
+  mutation createVote($link_id:ID!, $user_id:ID!){
+    createVote(link_id:$link_id, user_id:$user_id){
       link {
         description
       }

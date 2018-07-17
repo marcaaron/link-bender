@@ -46,6 +46,9 @@ export const ALL_LINKS = gql`
       }
       votes {
         id
+        user {
+          id
+        }
       }
     }
   }

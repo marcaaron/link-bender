@@ -5,7 +5,7 @@ class Resolvers::CreateLink < GraphQL::Function
   type Types::LinkType
 
   def call(obj, args, ctx)
-    user = User.find_by(args[:user_id])
+    user = User.find_by(id: args[:user_id])
     Link.create!(
       description: args[:description],
       url: args[:url],
