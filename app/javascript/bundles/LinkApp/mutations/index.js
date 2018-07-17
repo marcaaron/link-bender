@@ -18,6 +18,14 @@ export const CREATE_USER = gql`
   }
 `;
 
+export const DELETE_LINK = gql`
+  mutation deleteLink($id:ID!){
+    deleteLink(id:$id){
+      id
+    }
+  }
+`
+
 export const SIGN_IN_USER = gql`
   mutation signinUser($email:String!, $password:String!){
     signinUser(

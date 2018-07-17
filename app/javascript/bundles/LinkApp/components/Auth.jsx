@@ -13,7 +13,8 @@ class Auth extends Component {
       name: '',
       password: '',
       email: '',
-      token: ''
+      token: '',
+      id: ''
     }
     this.props.updateClientInfo({
       variables: userInfo

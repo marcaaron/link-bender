@@ -4,6 +4,8 @@
   "dependencies": {
     "@rails/webpacker": "3.5",
     "apollo-boost": "^0.1.10",
+    "apollo-cache-inmemory": "^1.2.5",
+    "apollo-cache-persist": "^0.1.1",
     "apollo-link-state": "^0.4.1",
     "babel-preset-react": "^6.24.1",
     "graphql": "^0.13.2",
