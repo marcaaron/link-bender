@@ -6,11 +6,15 @@ import { DELETE_LINK, CREATE_VOTE, DELETE_VOTE } from '../mutations';
 class Link extends Component {
 
   handleDelete = ({target}) => {
-    const id = target.dataset.id;
-    this.props.deleteLink({
-      variables: { id },
-      refetchQueries:[{ query: ALL_LINKS }]
-    })
+    const message = 'Are you sure you want to delete this link and all votes associated with it?';
+    if(window.confirm(message)){
+      const id = target.dataset.id;
+      console.log(id);
+      this.props.deleteLink({
+        variables: { id },
+        refetchQueries:[{ query: ALL_LINKS }]
+      })
+    }
   }
 
   handleUpvote = ({target}) => {
@@ -35,7 +39,6 @@ class Link extends Component {
     const { handleDelete, handleDeleteUpvote, handleUpvote } = this;
     const { id, url, description, postedBy, votes, data: { userInfo } } = this.props;
     const userVotes = votes.filter(vote=>vote.user.id === userInfo.id);
-    console.log(votes, userVotes, userInfo.id);
     return (
       <li>
         <a href={url}>{description}</a>

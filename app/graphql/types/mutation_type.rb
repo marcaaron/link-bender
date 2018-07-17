@@ -6,6 +6,6 @@ Types::MutationType = GraphQL::ObjectType.define do
   field :createUser, function: Resolvers::CreateUser.new
   field :signinUser, function: Resolvers::SignInUser.new
   field :deleteLink, function: Mutations::DeleteLink.new
-  field :deleteLink, function: Mutations::DeleteVote.new
-  
+  field :deleteVote, function: Mutations::DeleteVote.new
+
 end

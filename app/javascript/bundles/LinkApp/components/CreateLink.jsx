@@ -23,7 +23,11 @@ class CreateLink extends Component {
       variables: {...linkInfo, user_id },
       refetchQueries: [{query: ALL_LINKS }]
     })
-    .then(res=>console.log(res));
+    .then(()=>{
+      this.props.updateClientLink({
+        variables: { url:'', description:'' }
+      })
+    });
   }
 
   render(){
