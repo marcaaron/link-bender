@@ -1,15 +1,5 @@
 import { gql } from 'apollo-boost';
 
-export const GET_LINKS = gql`
-  {
-    allLinks{
-      id
-      description
-      url
-    }
-  }
-`;
-
 export const GET_USER_INFO = gql`
   query {
     userInfo @client {
@@ -40,11 +30,14 @@ export const GET_AUTH_METHOD = gql`
 `;
 
 export const ALL_LINKS = gql`
-  query {
+  query allLinks{
     allLinks {
       id
+      url
+      description
       postedBy{
         name
+        id
         votes {
           link {
             description

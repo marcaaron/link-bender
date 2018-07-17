@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { graphql, compose } from 'react-apollo';
-import { GET_USER_INFO, GET_CLIENT_LINK, GET_LINKS } from '../queries';
+import { GET_USER_INFO, GET_CLIENT_LINK, ALL_LINKS } from '../queries';
 import { UPDATE_CLIENT_LINK, CREATE_LINK } from '../mutations';
 
 class CreateLink extends Component {
@@ -17,12 +17,11 @@ class CreateLink extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const user = this.props.data.userInfo.id;
-    console.log(user);
+    const user_id = this.props.data.userInfo.id;
     const { getClientLink: { linkInfo } } = this.props;
     this.props.createLink({
-      variables: {...linkInfo, user },
-      refetchQueries: [{query: GET_LINKS }]
+      variables: {...linkInfo, user_id },
+      refetchQueries: [{query: ALL_LINKS }]
     })
     .then(res=>console.log(res));
   }
@@ -45,7 +44,6 @@ class CreateLink extends Component {
     } = this.props;
 
     const { handleChange, handleSubmit } = this;
-    console.log(this.props);
     if(token){
       return(
         <div>

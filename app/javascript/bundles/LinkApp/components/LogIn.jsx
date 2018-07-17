@@ -36,7 +36,6 @@ class LogIn extends Component {
   render() {
     const { handleChange, handleSubmit } = this;
     const { data: { userInfo: { name, email, password, id } } } = this.props;
-    console.log(id, name, password, email);
     return(
       <form className="login-form" onSubmit={handleSubmit}>
         <label htmlFor="email">E-Mail:</label>

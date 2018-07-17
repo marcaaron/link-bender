@@ -4,10 +4,10 @@ import { Query } from 'react-apollo';
 import Link from './Link';
 import CreateLink from './CreateLink';
 import Auth from './Auth';
-import { GET_LINKS } from '../queries';
+import { ALL_LINKS } from '../queries';
 
 const App = () => (
-  <Query query={GET_LINKS}>
+  <Query query={ALL_LINKS}>
     {({ loading, error, data }) => {
       if (loading) return <div>Loading...</div>;
       if (error) return <div>Error :(</div>;
@@ -18,7 +18,7 @@ const App = () => (
           <CreateLink/>
           <ul>
             {
-              data.allLinks.map(link=><Link linkId={link.id} key={link.id} {...link}></Link>)
+              data.allLinks.map(link=><Link key={link.id} {...link}></Link>)
             }
           </ul>
         </div>

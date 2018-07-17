@@ -61,8 +61,8 @@ export const TOGGLE_AUTH = gql`
 `;
 
 export const CREATE_LINK = gql`
-  mutation createLink($url:String!, $description:String!){
-    createLink(url:$url, description:$description){
+  mutation createLink($url:String!, $description:String!, $user_id:ID!){
+    createLink(url:$url, description:$description, user_id:$user_id){
       id
       url
       description
