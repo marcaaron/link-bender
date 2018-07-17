@@ -36,8 +36,9 @@ class SignUp extends Component {
       })
       .then((res)=>{
         const token = res.data.signinUser.token;
+        const id = res.data.signinUser.user.id;
         this.props.updateClientInfo({
-          variables:{name, email, password, token}
+          variables:{name, email, password, token, id}
         })
       })
     })

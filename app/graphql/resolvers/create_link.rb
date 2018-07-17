@@ -10,6 +10,7 @@ class Resolvers::CreateLink < GraphQL::Function
       description: args[:description],
       url: args[:url],
       user: user
+      # user: ctx[:current_user]
     )
   rescue ActiveRecord::RecordInvalid => e
     GraphQL::ExecutionError.new("Invalid input: #{e.record.errors.full_messages.join(', ')}")
