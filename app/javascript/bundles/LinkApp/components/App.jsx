@@ -10,6 +10,7 @@ import { ALL_LINKS, GET_USER_INFO } from '../queries';
 const App = (props) => {
   console.log(props);
   const { data: { allLinks }, getUserInfo: { userInfo: { token }}} = props;
+  const orderedLinks = [...allLinks].sort((a,b)=>b.votes.length - a.votes.length);
   return (
     <div className="app-container">
       <Header/>
@@ -17,7 +18,7 @@ const App = (props) => {
       {token && <CreateLink/>}
       <ul>
         {
-          allLinks.map(link=><Link key={link.id} {...link}></Link>)
+          orderedLinks.map(link=><Link key={link.id} {...link}></Link>)
         }
       </ul>
     </div>
