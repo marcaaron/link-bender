@@ -23,7 +23,7 @@ default: &default
 
 development:
   <<: *default
-  database: PG_Rails
+  database: myapp_development
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -80,6 +80,6 @@ test:
 #
 production:
   <<: *default
-  database: PG_Rails
-  username:
+  database: myapp_production
+  username: myapp
   password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
