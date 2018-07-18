@@ -14,4 +14,12 @@ Types::QueryType = GraphQL::ObjectType.define do
   field :allUsers, !types[Types::UserType] do
     resolve -> (obj, args, ctx) { User.all }
   end
+
+  field :userById, types[Types::UserType] do
+    description 'Find User By Id'
+    argument :id, types.ID, 'The ID of the user to retrieve.'
+    resolve -> (obj, args, ctx) {
+      User.find([args[:id]])
+    }
+  end
 end

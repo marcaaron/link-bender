@@ -12,6 +12,34 @@ export const GET_USER_INFO = gql`
   }
 `;
 
+export const GET_USER_BY_ID = gql`
+  query userById($id: ID!){
+  userById(id: $id){
+    id
+    links {
+      id
+      url
+      description
+      postedBy{
+        name
+        id
+        votes {
+          link {
+            description
+          }
+        }
+      }
+      votes {
+        id
+        user {
+          id
+        }
+      }
+    }
+  }
+}
+`
+
 export const GET_CLIENT_LINK = gql`
   query {
     linkInfo @client {

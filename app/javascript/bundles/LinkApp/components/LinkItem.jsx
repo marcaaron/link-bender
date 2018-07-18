@@ -3,8 +3,9 @@ import { graphql, compose } from 'react-apollo';
 import { ALL_LINKS, GET_USER_INFO } from '../queries';
 import { DELETE_LINK, CREATE_VOTE, DELETE_VOTE } from '../mutations';
 import { CloseButton, VoteArrow, VoteArrowAlt } from './icons';
+import { Link } from 'react-router-dom';
 
-class Link extends Component {
+class LinkItem extends Component {
 
   delete = (id) => {
     const message = 'Are you sure you want to delete this link and all votes associated with it?';
@@ -60,7 +61,7 @@ class Link extends Component {
       <li className="link">
         <div className="link__info">
           <a className="link__description" href={url}>{description}</a>
-          <p className="link__user">posted by - <a>{postedBy.name}</a></p>
+          <p className="link__user">posted by - <Link to={`/user/${postedBy.id}`}>{postedBy.name}</Link></p>
         </div>
         <div className="link__btns">
           <span className="link__score">{ votes.length }</span>
@@ -89,4 +90,4 @@ export default compose(
   graphql(CREATE_VOTE, {name:"upvoteLink"}),
   graphql(DELETE_VOTE, {name:"deleteVote"}),
   graphql(DELETE_LINK, {name:'deleteLink'})
-)(Link);
+)(LinkItem);
