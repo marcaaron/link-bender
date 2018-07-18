@@ -87,3 +87,7 @@ gem "webpacker", "~> 3" # Newer versions might be supported
 gem 'mini_racer', platforms: :ruby
 
 gem 'rack-cors', require: 'rack/cors'
+
+group :production do
+  gem 'rails_12factor'
+end
