@@ -8,20 +8,6 @@ import LogIn from './LogIn';
 import { CloseButton } from './icons';
 
 class Auth extends Component {
-
-  logOut = () => {
-    const userInfo = {
-      name: '',
-      password: '',
-      email: '',
-      token: '',
-      id: ''
-    }
-    this.props.updateClientInfo({
-      variables: userInfo
-    })
-  }
-
   handleAuthToggle = ({target}) => {
     console.log(target);
     if(!target.id) return null;
@@ -77,19 +63,13 @@ class Auth extends Component {
         </div>
       );
     }else{
-      return (
-        <div>
-          <div>Welcome { name }!</div>
-          <button onClick={ logOut }>Sign Out</button>
-        </div>
-      )
+      return null;
     }
   }
 }
 
 export default compose(
   graphql(GET_USER_INFO),
-  graphql(UPDATE_CLIENT_INFO, {name:'updateClientInfo'}),
   graphql(GET_AUTH_METHOD, {name:'authMethod'}),
   graphql(TOGGLE_AUTH, {name:'toggleAuth'})
 )(Auth);

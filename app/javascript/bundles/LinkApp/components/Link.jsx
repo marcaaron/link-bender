@@ -2,59 +2,83 @@ import React, { Component } from 'react';
 import { graphql, compose } from 'react-apollo';
 import { ALL_LINKS, GET_USER_INFO } from '../queries';
 import { DELETE_LINK, CREATE_VOTE, DELETE_VOTE } from '../mutations';
+import { CloseButton, VoteArrow, VoteArrowAlt } from './icons';
 
 class Link extends Component {
 
-  handleDelete = ({target}) => {
+  delete = (id) => {
     const message = 'Are you sure you want to delete this link and all votes associated with it?';
-    if(window.confirm(message)){
-      const id = target.dataset.id;
-      console.log(id);
+    if(confirm(message)){
       this.props.deleteLink({
         variables: { id },
         refetchQueries:[{ query: ALL_LINKS }]
       })
+      .then(res=>console.log(res.data));
     }
   }
 
-  handleUpvote = ({target}) => {
-    const link_id = target.dataset.id;
-    const user_id = this.props.data.userInfo.id;
+  upvote = (user_id, link_id) => {
     this.props.upvoteLink({
       variables: { link_id, user_id },
       refetchQueries:[{ query: ALL_LINKS }]
     })
+    .then(res=>console.log(res.data));
   }
 
-  handleDeleteUpvote = ({target}) => {
-    const link_id = target.dataset.id
-    const user_id = this.props.data.userInfo.id;
+  deleteVote = (user_id, link_id) => {
     this.props.deleteVote({
       variables: { link_id, user_id },
       refetchQueries:[{ query: ALL_LINKS }]
     })
+    .then(res=>console.log(res.data));
+  }
+
+  handleClick = ({target}) => {
+    const { method } = target.dataset;
+    const link_id = target.dataset.id;
+    const user_id = this.props.data.userInfo.id;
+    switch(method){
+      case 'DELETE':
+        this.delete(link_id);
+        break;
+      case 'VOTE':
+        this.upvote(user_id, link_id);
+        break;
+      case 'DELETE_VOTE':
+        this.deleteVote(user_id, link_id);
+        break;
+      default:
+        console.log('No Method Found.');
+    }
   }
 
   render(){
-    const { handleDelete, handleDeleteUpvote, handleUpvote } = this;
+    const { handleClick } = this;
     const { id, url, description, postedBy, votes, data: { userInfo } } = this.props;
     const userVotes = votes.filter(vote=>vote.user.id === userInfo.id);
     return (
-      <li>
-        <a href={url}>{description}</a>
-        {
-          postedBy && postedBy.id === userInfo.id &&
-          <button id={`delete_for_${id}`} data-id={id} onClick={handleDelete}>Delete</button>
-        }
-        {
-          userInfo.token && postedBy && postedBy.id !== userInfo.id && userVotes.length === 0 &&
-          <button id={`vote_for_${id}`} data-id={id} onClick={handleUpvote}>Upvote</button>
-        }
-        {
-          userInfo.token && postedBy && postedBy.id !== userInfo.id && userVotes.length > 0 &&
-          <button id={`delete_vote_for_${id}`} data-id={id} onClick={handleDeleteUpvote}>Cancel Vote</button>
-        }
-        <p>Vote Count: { votes.length }</p>
+      <li className="link">
+        <div className="link__info">
+          <a className="link__description" href={url}>{description}</a>
+          <p className="link__user">posted by - <a>{postedBy.name}</a></p>
+        </div>
+        <div className="link__btns">
+          <span className="link__score">{ votes.length }</span>
+          <div className="link__btn" onClick={handleClick}>
+            {
+              postedBy && postedBy.id === userInfo.id &&
+              <CloseButton id={`delete_for_${id}`} data-method="DELETE" data-id={id}/>
+            }
+            {
+              userInfo.token && postedBy && postedBy.id !== userInfo.id && userVotes.length === 0 &&
+              <VoteArrow id={`vote_for_${id}`} data-method="VOTE" data-id={id}/>
+            }
+            {
+              userInfo.token && postedBy && postedBy.id !== userInfo.id && userVotes.length > 0 &&
+              <VoteArrowAlt id={`delete_vote_for_${id}`} data-id={id} data-method="DELETE_VOTE" />
+            }
+          </div>
+        </div>
       </li>
     );
   }

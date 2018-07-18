@@ -1,9 +1,27 @@
-import React, { Component } from 'react';
+import React, { Component, createRef } from 'react';
 import { graphql, compose } from 'react-apollo';
 import { GET_USER_INFO } from '../queries';
 import { SIGN_IN_USER, CREATE_USER, UPDATE_CLIENT_INFO } from '../mutations';
 
 class LogIn extends Component {
+
+  constructor(){
+    super();
+    this.emailLabel = createRef();
+    this.passwordLabel = createRef();
+    this.state = {
+      emailLabelWidth: 0,
+      passwordLabelWidth: 0
+    }
+  }
+
+  componentDidMount(){
+    const { emailLabel, passwordLabel } = this;
+    const emailLabelWidth = emailLabel.current.getBoundingClientRect().width;
+    const passwordLabelWidth = passwordLabel.current.getBoundingClientRect().width;
+    this.setState({emailLabelWidth, passwordLabelWidth});
+  }
+
   handleChange = (e) => {
     const { data: { userInfo } } = this.props;
     const updatedInfo = {...userInfo};
@@ -34,14 +52,19 @@ class LogIn extends Component {
   };
 
   render() {
-    const { handleChange, handleSubmit } = this;
+    const { handleChange, handleSubmit, emailLabel, passwordLabel } = this;
+    const { emailLabelWidth, passwordLabelWidth } = this.state;
     const { data: { userInfo: { name, email, password, id } } } = this.props;
     return(
       <form className="login-form" onSubmit={handleSubmit}>
-        <label htmlFor="email">E-Mail:</label>
-        <input required id="email" name="email" onChange={handleChange} type="text" value={email}/>
-        <label htmlFor="password">Password:</label>
-        <input required id="password" name="password" onChange={handleChange} type="password" value={password}/>
+        <div className="auth-box__input-wrapper">
+          <label ref={emailLabel} htmlFor="email">E-Mail:</label>
+          <input style={{paddingLeft: `${emailLabelWidth}px`}} required id="email" name="email" onChange={handleChange} type="text" value={email}/>
+        </div>
+        <div className="auth-box__input-wrapper">
+          <label ref={passwordLabel} htmlFor="password">Password:</label>
+          <input style={{paddingLeft: `${passwordLabelWidth}px`}} required id="password" name="password" onChange={handleChange} type="password" value={password}/>
+        </div>
         <button type="submit">Submit</button>
       </form>
     )

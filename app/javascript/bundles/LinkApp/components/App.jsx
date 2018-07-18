@@ -1,30 +1,30 @@
 import React from 'react';
 import { gql } from 'apollo-boost';
-import { Query } from 'react-apollo';
+import { graphql, compose } from 'react-apollo';
 import Link from './Link';
 import CreateLink from './CreateLink';
 import Auth from './Auth';
-import { ALL_LINKS } from '../queries';
+import Header from './Header';
+import { ALL_LINKS, GET_USER_INFO } from '../queries';
 
-const App = () => (
-  <Query query={ALL_LINKS}>
-    {({ loading, error, data }) => {
-      if (loading) return <div>Loading...</div>;
-      if (error) return <div>Error :(</div>;
-      return (
-        <div className="app-container">
-          <h1 className="main-header">Link Blender</h1>
-          <Auth/>
-          <CreateLink/>
-          <ul>
-            {
-              data.allLinks.map(link=><Link key={link.id} {...link}></Link>)
-            }
-          </ul>
-        </div>
-      )
-    }}
-  </Query>
-)
+const App = (props) => {
+  console.log(props);
+  const { data: { allLinks }, getUserInfo: { userInfo: { token }}} = props;
+  return (
+    <div className="app-container">
+      <Header/>
+      <Auth/>
+      {token && <CreateLink/>}
+      <ul>
+        {
+          allLinks.map(link=><Link key={link.id} {...link}></Link>)
+        }
+      </ul>
+    </div>
+  )
 
-export default App;
+}
+export default compose(
+  graphql(ALL_LINKS),
+  graphql(GET_USER_INFO, {name:'getUserInfo'})
+)(App);

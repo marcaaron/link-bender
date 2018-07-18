@@ -26,7 +26,7 @@ export const DELETE_LINK = gql`
 
 export const DELETE_VOTE = gql`
   mutation deleteVote($user_id:ID!, $link_id:ID!){
-    deleteLink(user_id:$user_id, link_id:$link_id)
+    deleteVote(user_id:$user_id, link_id:$link_id)
   }
 `
 
