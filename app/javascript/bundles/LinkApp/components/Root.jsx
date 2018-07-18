@@ -6,18 +6,18 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import { persistCache } from 'apollo-cache-persist';
 import { BrowserRouter as Router } from 'react-router-dom';
 
-const cache = new InMemoryCache();
-
-persistCache({
-  cache,
-  storage: window.localStorage,
-});
+// const cache = new InMemoryCache();
+//
+// persistCache({
+//   cache,
+//   storage: window.localStorage,
+// });
 
 // Figure out Why Apollo Won't List more than 11 items when cache
 
 const client = new ApolloClient({
-  cache,
-  uri: 'http://localhost:3000/graphql',
+  // cache,
+  uri: 'https://pacific-lowlands-20399.herokuapp.com/graphql',
   clientState: {
     defaults: {
       userInfo: {
