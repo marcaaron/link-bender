@@ -43,6 +43,7 @@ class LogIn extends Component {
       }
     })
     .then((res)=>{
+      console.log(res);
       const { user: { name, email, id }, token } = res.data.signinUser;
       this.props.updateClientInfo({
         variables:{ name, email, password: '', token, id }

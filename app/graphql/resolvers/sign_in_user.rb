@@ -1,4 +1,4 @@
-class Resolvers::SignInUser < GraphQL::Function
+  class Resolvers::SignInUser < GraphQL::Function
   argument :email, !Types::AuthProviderEmailInput
 
   type do
@@ -17,9 +17,10 @@ class Resolvers::SignInUser < GraphQL::Function
     return unless user
     return unless user.authenticate(input[:password])
 
-    crypt = ActiveSupport::MessageEncryptor.new(Rails.application.credentials.secret_key_base.byteslice(0..31))
-    token = crypt.encrypt_and_sign("user-id:#{ user.id }")
-
+    # crypt = ActiveSupport::MessageEncryptor.new(Rails.application.credentials.secret_key_base.byteslice(0..31))
+    # crypt = ActiveSupport::MessageEncryptor.new(Rails.application.secrets.secret_key_base.byteslice(0..31))
+    # token = crypt.encrypt_and_sign("user-id:#{ user.id }")
+    token = (0...8).map { (65 + rand(26)).chr }.join
     ctx[:session][:token] = token
 
     OpenStruct.new({
