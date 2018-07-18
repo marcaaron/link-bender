@@ -16,7 +16,7 @@ import { persistCache } from 'apollo-cache-persist';
 
 const client = new ApolloClient({
   // cache,
-  uri: 'https://pacific-lowlands-20399.herokuapp.com/graphql',
+  uri: 'http://localhost:3000/graphql',
   clientState: {
     defaults: {
       userInfo: {
@@ -34,7 +34,8 @@ const client = new ApolloClient({
       },
       toggleAuth: {
         __typename: "ToggleAuth",
-        isNewUser: false
+        isNewUser: false,
+        isAuthBoxHidden: false
       }
     },
     resolvers: {
@@ -55,12 +56,13 @@ const client = new ApolloClient({
           });
           return null;
         },
-        toggleAuthType: (_, { isNewUser }, { cache }) => {
+        toggleAuthType: (_, { isNewUser, isAuthBoxHidden }, { cache }) => {
           cache.writeData({
             data: {
               toggleAuth: {
                 __typename: "ToggleAuth",
-                isNewUser
+                isNewUser,
+                isAuthBoxHidden
               }
             }
           });

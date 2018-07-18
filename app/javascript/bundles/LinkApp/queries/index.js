@@ -25,6 +25,7 @@ export const GET_AUTH_METHOD = gql`
   query {
     toggleAuth @client {
       isNewUser
+      isAuthBoxHidden
     }
   }
 `;

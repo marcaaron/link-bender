@@ -61,8 +61,8 @@ export const UPDATE_CLIENT_LINK = gql`
 `;
 
 export const TOGGLE_AUTH = gql`
-  mutation toggleAuthType($isNewUser: Boolean!){
-    toggleAuthType(isNewUser: $isNewUser) @client
+  mutation toggleAuthType($isNewUser: Boolean!, $isAuthBoxHidden: Boolean!){
+    toggleAuthType(isNewUser: $isNewUser, isAuthBoxHidden: $isAuthBoxHidden) @client
   }
 `;
 

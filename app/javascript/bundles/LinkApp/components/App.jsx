@@ -12,8 +12,8 @@ const App = () => (
       if (loading) return <div>Loading...</div>;
       if (error) return <div>Error :(</div>;
       return (
-        <div>
-          <h1>Link Share</h1>
+        <div className="app-container">
+          <h1 className="main-header">Link Blender</h1>
           <Auth/>
           <CreateLink/>
           <ul>
