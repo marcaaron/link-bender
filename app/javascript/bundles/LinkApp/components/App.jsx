@@ -17,11 +17,11 @@ const App = (props) => {
     <div className="app-container">
       <Header/>
       <Auth/>
+      {token && <CreateLink/>}
       <Switch>
         <Route path="/user/:id" component={UserLinks}/>
         <Route path="/" component={()=><LinkList links={orderedLinks}/>}/>
       </Switch>
-      {token && <CreateLink/>}
     </div>
   )
 

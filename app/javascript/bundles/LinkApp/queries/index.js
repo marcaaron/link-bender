@@ -16,6 +16,7 @@ export const GET_USER_BY_ID = gql`
   query userById($id: ID!){
   userById(id: $id){
     id
+    name
     links {
       id
       url
