@@ -17,8 +17,8 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 const client = new ApolloClient({
   // cache,
-  // uri: 'https://pacific-lowlands-20399.herokuapp.com/graphql',
-  uri: 'http://localhost:3000/graphql',
+  uri: 'https://pacific-lowlands-20399.herokuapp.com/graphql',
+  // uri: 'http://localhost:3000/graphql',
   clientState: {
     defaults: {
       userInfo: {
