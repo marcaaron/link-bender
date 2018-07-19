@@ -13,7 +13,6 @@ class ErrorMessage extends Component {
   }
 
   render() {
-    console.log(this.props);
     const {
       data: {
         errorHandler: {
@@ -26,10 +25,11 @@ class ErrorMessage extends Component {
     return (
       <div className="error-message" aria-expanded={isError}>
         {isError && [
-          <p>
-            <span className="error-message__header">Error: </span> {errorMessage}
-          </p>,
-          <div onClick={handleClick} className="error-message__close">
+          <div key="em-head">
+            <p className="error-message__header">Error: </p>
+            <p className="error-message__body">{errorMessage}</p>
+          </div>,
+          <div key="em-btn" onClick={handleClick} className="error-message__close">
             <OkButton />
           </div>
         ]

@@ -10,7 +10,18 @@ Types::QueryType = GraphQL::ObjectType.define do
       Link.find([args[:id]])
     }
   end
+
   field :allLinks, function: Resolvers::LinksSearch
+  field :linkBySlug, function: Resolvers::LinkBySlug.new
+
+  # field :linkBySlug, !types[Types::LinkType] do
+  #   description 'Find Link By Slug'
+  #   argument :slug, !types.String, 'The slug of the link to retrieve.'
+  #   resolve -> (obj, args, ctx) {
+  #     Link.find_by(slug: args[:slug])
+  #   }
+  # end
+
   field :allUsers, !types[Types::UserType] do
     resolve -> (obj, args, ctx) { User.all }
   end

@@ -14,7 +14,7 @@ class LinkItem extends Component {
         variables: { id },
         refetchQueries:[{ query: ALL_LINKS }]
       })
-      .then(res=>console.log(res.data));
+      // .then(res=>console.log(res.data));
     }
   }
 
@@ -23,7 +23,7 @@ class LinkItem extends Component {
       variables: { link_id, user_id },
       refetchQueries:[{ query: ALL_LINKS }]
     })
-    .then(res=>console.log(res.data));
+    // .then(res=>console.log(res.data));
   }
 
   deleteVote = (user_id, link_id) => {
@@ -31,7 +31,7 @@ class LinkItem extends Component {
       variables: { link_id, user_id },
       refetchQueries:[{ query: ALL_LINKS }]
     })
-    .then(res=>console.log(res.data));
+    // .then(res=>console.log(res.data));
   }
 
   handleClick = ({target}) => {
@@ -55,12 +55,12 @@ class LinkItem extends Component {
 
   render(){
     const { handleClick } = this;
-    const { id, url, description, postedBy, votes, data: { userInfo } } = this.props;
+    const { id, slug, url, description, postedBy, votes, data: { userInfo } } = this.props;
     const userVotes = votes.filter(vote=>vote.user.id === userInfo.id);
     return (
       <li className="link">
         <div className="link__info">
-          <a className="link__description" href={url}>{description}</a>
+          <Link to={`/link/${slug}`} className="link__description" >{description}</Link>
           <p className="link__user">posted by - <Link to={`/user/${postedBy.id}`}>{postedBy.name}</Link></p>
         </div>
         <div className="link__btns">

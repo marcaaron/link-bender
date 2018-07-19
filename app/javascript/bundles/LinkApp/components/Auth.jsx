@@ -9,7 +9,6 @@ import { CloseButton } from './icons';
 
 class Auth extends Component {
   handleAuthToggle = ({target}) => {
-    console.log(target);
     if(!target.id) return null;
     let isNewUser = this.props.authMethod.toggleAuth.isNewUser;
     let isAuthBoxHidden = this.props.authMethod.toggleAuth.isAuthBoxHidden;

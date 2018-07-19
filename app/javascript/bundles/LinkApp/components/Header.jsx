@@ -3,6 +3,9 @@ import { TOGGLE_AUTH, UPDATE_CLIENT_INFO } from '../mutations';
 import { GET_AUTH_METHOD, GET_USER_INFO } from '../queries';
 import { graphql, compose } from 'react-apollo';
 import { LogInBtn, LogOutBtn } from './icons';
+import { Link } from 'react-router-dom';
+import ErrorMessage from './ErrorMessage';
+import Auth from './Auth';
 
 class Header extends Component {
   handleClick = () => {
@@ -48,15 +51,18 @@ class Header extends Component {
         }
       }
     } = this.props;
-    console.log(password)
     const { handleClick } = this;
     return (
-      <h1 className="main-header">
-        <div>
-          <p>Link Blender</p>
-          <div onClick={handleClick}>{token ? <LogOutBtn/> : <LogInBtn/> }</div>
-        </div>
-      </h1>
+      <header>
+        <h1 className="main-header">
+          <ErrorMessage/>
+          <div>
+            <Link to="/"><p>Link Blender</p></Link>
+            <div onClick={handleClick}>{token ? <LogOutBtn/> : <LogInBtn/> }</div>
+          </div>
+        </h1>
+        <Auth/>
+      </header>
     );
   }
 }

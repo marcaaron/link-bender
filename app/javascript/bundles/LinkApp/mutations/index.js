@@ -74,11 +74,18 @@ export const TOGGLE_AUTH = gql`
   }
 `;
 
+export const TOGGLE_CREATE_LINK = gql`
+  mutation toggleCreateLink($isCreateLinkHidden: Boolean!){
+    toggleCreateLink(isCreateLinkHidden: $isCreateLinkHidden) @client
+  }
+`;
+
 export const CREATE_LINK = gql`
-  mutation createLink($url:String!, $description:String!, $user_id:ID!){
-    createLink(url:$url, description:$description, user_id:$user_id){
+  mutation createLink($url:String!, $description:String!, $user_id:ID!, $slug:String!){
+    createLink(url:$url, description:$description, user_id:$user_id, slug: $slug){
       id
       url
+      slug
       description
       postedBy {
         id

@@ -2,12 +2,15 @@ class Resolvers::CreateLink < GraphQL::Function
   argument :description, !types.String
   argument :url, !types.String
   argument :user_id, !types.ID
+  argument :slug, !types.String
+
   type Types::LinkType
 
   def call(obj, args, ctx)
     user = User.find_by(id: args[:user_id])
     Link.create!(
       description: args[:description],
+      slug: args[:slug],
       url: args[:url],
       user: user
       # user: ctx[:current_user]

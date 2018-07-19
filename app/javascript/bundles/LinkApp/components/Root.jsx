@@ -39,6 +39,10 @@ const client = new ApolloClient({
         isNewUser: false,
         isAuthBoxHidden: false
       },
+      toggleCreateLink: {
+        __typename: "ToggleCreateLink",
+        isCreateLinkHidden: true
+      },
       errorHandler: {
         __typename: "ErrorHandler",
         errorMessage: ''
@@ -57,6 +61,17 @@ const client = new ApolloClient({
                 password,
                 token,
                 id
+              }
+            }
+          });
+          return null;
+        },
+        toggleCreateLink: (_, { isCreateLinkHidden }, { cache }) => {
+          cache.writeData({
+            data: {
+              toggleCreateLink: {
+                __typename: "ToggleCreateLink",
+                isCreateLinkHidden
               }
             }
           });

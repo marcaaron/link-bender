@@ -47,9 +47,12 @@ class LogIn extends Component {
       this.props.updateClientInfo({
         variables:{ name, email, password: '', token, id }
       })
+      this.props.updateErrorMessage({
+        variables: { errorMessage:'' }
+      })
     })
     .catch((err)=>{
-      console.log(err.graphQLErrors);
+      // console.log(err.graphQLErrors);
       const errorMessage = err.graphQLErrors[0].message;
       this.props.updateErrorMessage({
         variables: { errorMessage }

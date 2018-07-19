@@ -12,6 +12,27 @@ export const GET_USER_INFO = gql`
   }
 `;
 
+export const GET_LINK_BY_SLUG = gql`
+  query LinkBySlug($slug: String!){
+    linkBySlug(slug: $slug){
+      id
+      description
+      slug
+      url
+      postedBy{
+        id
+        name
+      }
+      votes{
+        id
+        user{
+          name
+        }
+      }
+    }
+  }
+`;
+
 export const GET_USER_BY_ID = gql`
   query userById($id: ID!){
   userById(id: $id){
@@ -20,12 +41,14 @@ export const GET_USER_BY_ID = gql`
     links {
       id
       url
+      slug
       description
       postedBy{
         name
         id
         votes {
           link {
+            slug
             description
           }
         }
@@ -59,6 +82,14 @@ export const GET_AUTH_METHOD = gql`
   }
 `;
 
+export const GET_CREATE_LINK_TOGGLE = gql`
+  query {
+    toggleCreateLink @client {
+      isCreateLinkHidden
+    }
+  }
+`;
+
 export const GET_ERROR_MESSAGE = gql`
   query {
     errorHandler @client {
@@ -72,12 +103,14 @@ export const ALL_LINKS = gql`
     allLinks {
       id
       url
+      slug
       description
       postedBy{
         name
         id
         votes {
           link {
+            slug
             description
           }
         }
