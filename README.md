@@ -2,14 +2,18 @@
 
 *In Progress...*
 
-This is a very simple React on Rails example app that leverages the back end rails API laid out in the [How To GraphQL – GraphQL Ruby tutorial](https://www.howtographql.com/graphql-ruby/). It extends that project by implementing a React on Rails client with Apollo Client to hit the rails server and Apollo Link-State to manage local application state.
+This is a very simple GraphQL Ruby / React on Rails example app that leverages the back end rails API laid out in the [How To GraphQL – GraphQL Ruby tutorial](https://www.howtographql.com/graphql-ruby/0-introduction/) written by [Radoslav Stankov](https://twitter.com/rstankov). This project extends that tutorial by implementing a React on Rails front end with Apollo Client to hit the rails server and Apollo Link-State to manage local application state. It's mostly a Front End exercise, but I added several Ruby GraphQL queries, types, and mutations to get a feel for things.
+
+**Current Build Deployed @ Heroku:**
+[https://pacific-lowlands-20399.herokuapp.com/](https://pacific-lowlands-20399.herokuapp.com/)
 
 **Basic Features:**
 
 - User Accounts
-- Session Authorization
 - Creating Links
+- Deleting Own Links
 - Voting on Links
+- Animated Screenshot Link Previews
 
 **Tools Used:**
 

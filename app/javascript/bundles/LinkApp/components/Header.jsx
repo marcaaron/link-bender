@@ -5,7 +5,6 @@ import { graphql, compose } from 'react-apollo';
 import { LogInBtn, LogOutBtn } from './icons';
 import { Link } from 'react-router-dom';
 import ErrorMessage from './ErrorMessage';
-import Auth from './Auth';
 
 class Header extends Component {
   handleClick = () => {
@@ -61,7 +60,6 @@ class Header extends Component {
             <div onClick={handleClick}>{token ? <LogOutBtn/> : <LogInBtn/> }</div>
           </div>
         </h1>
-        <Auth/>
       </header>
     );
   }

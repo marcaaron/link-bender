@@ -7,6 +7,7 @@ import CreateLink from './CreateLink';
 import FooterNav from './FooterNav';
 import LinkDetails from './LinkDetails';
 import Header from './Header';
+import Auth from './Auth';
 import { ALL_LINKS, GET_USER_INFO } from '../queries';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
@@ -17,8 +18,9 @@ const App = (props) => {
   return (
     <div className="app-container">
       <Header/>
-      {token && <CreateLink/>}
       <div className="main-container">
+        <Auth/>
+        {token && <CreateLink/>}
         <Switch>
           <Route path="/link/:slug" component={LinkDetails}/>
           <Route path="/user/:id" component={UserLinks}/>
