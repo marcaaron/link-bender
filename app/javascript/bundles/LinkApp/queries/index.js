@@ -27,6 +27,7 @@ export const GET_LINK_BY_SLUG = gql`
         id
         user{
           name
+          id
         }
       }
     }

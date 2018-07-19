@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 
 class LinkDetails extends Component {
   render() {
-    const { takeSnapshot } = this;
     if(this.props.getLinkBySlug.loading) return 'Loading';
     const {
       getLinkBySlug: {
@@ -17,7 +16,7 @@ class LinkDetails extends Component {
       <ul>
         <LinkItem key={linkBySlug.id} {...linkBySlug}></LinkItem>
         <a target="_blank" href={linkBySlug.url} className="thumbnail">
-            <iframe onLoad={takeSnapshot} className="thumbnail__iframe" frameBorder="0" src={linkBySlug.url}></iframe>
+            <iframe className="thumbnail__iframe" frameBorder="0" src={linkBySlug.url}></iframe>
         </a>
       </ul>
     );
