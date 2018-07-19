@@ -5,11 +5,19 @@ import { graphql, compose } from 'react-apollo';
 import { OkButton } from './icons';
 
 class ErrorMessage extends Component {
+  constructor(props){
+    super(props);
+    this.errorBox = React.createRef();
+  }
 
   handleClick = () => {
     this.props.updateErrorMessage({
       variables: {errorMessage: ''}
     })
+  }
+
+  componentDidUpdate(){
+    this.errorBox.current.scrollIntoView();
   }
 
   render() {
@@ -22,8 +30,9 @@ class ErrorMessage extends Component {
     } = this.props;
     const { handleClick } = this;
     const isError = errorMessage !== '';
+
     return (
-      <div className="error-message" aria-expanded={isError}>
+      <div ref={this.errorBox} className="error-message" aria-expanded={isError}>
         {isError && [
           <div key="em-head">
             <p className="error-message__header">Error: </p>
