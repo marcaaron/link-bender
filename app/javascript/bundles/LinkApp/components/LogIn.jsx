@@ -1,7 +1,7 @@
 import React, { Component, createRef } from 'react';
 import { graphql, compose } from 'react-apollo';
 import { GET_USER_INFO } from '../queries';
-import { SIGN_IN_USER, CREATE_USER, UPDATE_CLIENT_INFO } from '../mutations';
+import { SIGN_IN_USER, CREATE_USER, UPDATE_CLIENT_INFO, UPDATE_ERROR_MESSAGE } from '../mutations';
 
 class LogIn extends Component {
 
@@ -42,14 +42,19 @@ class LogIn extends Component {
         password
       }
     })
-    .then((res)=>{
-      console.log(res);
-      const { user: { name, email, id }, token } = res.data.signinUser;
+    .then(({data})=>{
+      const { user: { name, email, id }, token } = data.signinUser;
       this.props.updateClientInfo({
         variables:{ name, email, password: '', token, id }
       })
     })
-    .catch(err=>console.log(err));
+    .catch((err)=>{
+      console.log(err.graphQLErrors);
+      const errorMessage = err.graphQLErrors[0].message;
+      this.props.updateErrorMessage({
+        variables: { errorMessage }
+      })
+    });
   };
 
   render() {
@@ -73,6 +78,7 @@ class LogIn extends Component {
 }
 
 export default compose(
+  graphql(UPDATE_ERROR_MESSAGE, {name: 'updateErrorMessage'}),
   graphql(CREATE_USER, {name: 'createUser'}),
   graphql(SIGN_IN_USER, {name: 'signinUser'}),
   graphql(UPDATE_CLIENT_INFO, {name: 'updateClientInfo'}),

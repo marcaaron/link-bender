@@ -24,6 +24,8 @@ export const DELETE_LINK = gql`
   }
 `;
 
+
+
 export const DELETE_VOTE = gql`
   mutation deleteVote($user_id:ID!, $link_id:ID!){
     deleteVote(user_id:$user_id, link_id:$link_id)
@@ -59,6 +61,12 @@ export const UPDATE_CLIENT_LINK = gql`
     updateClientLink(url: $url, description: $description) @client
   }
 `;
+
+export const UPDATE_ERROR_MESSAGE = gql`
+  mutation updateErrorMessage($errorMessage: String!){
+    updateErrorMessage(errorMessage:$errorMessage) @client
+  }
+`
 
 export const TOGGLE_AUTH = gql`
   mutation toggleAuthType($isNewUser: Boolean!, $isAuthBoxHidden: Boolean!){

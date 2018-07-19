@@ -17,7 +17,8 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 const client = new ApolloClient({
   // cache,
-  uri: 'https://pacific-lowlands-20399.herokuapp.com/graphql',
+  // uri: 'https://pacific-lowlands-20399.herokuapp.com/graphql',
+  uri: 'http://localhost:3000/graphql',
   clientState: {
     defaults: {
       userInfo: {
@@ -37,6 +38,10 @@ const client = new ApolloClient({
         __typename: "ToggleAuth",
         isNewUser: false,
         isAuthBoxHidden: false
+      },
+      errorHandler: {
+        __typename: "ErrorHandler",
+        errorMessage: ''
       }
     },
     resolvers: {
@@ -76,6 +81,17 @@ const client = new ApolloClient({
                 __typename: "ToggleAuth",
                 url,
                 description
+              }
+            }
+          });
+          return null;
+        },
+        updateErrorMessage: (_, { errorMessage }, { cache }) => {
+          cache.writeData({
+            data: {
+              errorHandler: {
+                __typename: "ErrorHandler",
+                errorMessage
               }
             }
           });

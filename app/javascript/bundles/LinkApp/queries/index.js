@@ -59,6 +59,14 @@ export const GET_AUTH_METHOD = gql`
   }
 `;
 
+export const GET_ERROR_MESSAGE = gql`
+  query {
+    errorHandler @client {
+      errorMessage
+    }
+  }
+`;
+
 export const ALL_LINKS = gql`
   query allLinks{
     allLinks {

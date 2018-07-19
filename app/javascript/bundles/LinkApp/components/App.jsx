@@ -4,6 +4,7 @@ import { graphql, compose } from 'react-apollo';
 import LinkList from './LinkList';
 import UserLinks from './UserLinks';
 import CreateLink from './CreateLink';
+import ErrorMessage from './ErrorMessage';
 import Auth from './Auth';
 import Header from './Header';
 import { ALL_LINKS, GET_USER_INFO } from '../queries';
@@ -15,6 +16,7 @@ const App = (props) => {
   const orderedLinks = [...allLinks].sort((a,b)=>b.votes.length - a.votes.length);
   return (
     <div className="app-container">
+      <ErrorMessage/>
       <Header/>
       <Auth/>
       {token && <CreateLink/>}
