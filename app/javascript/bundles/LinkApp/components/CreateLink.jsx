@@ -96,7 +96,7 @@ class CreateLink extends Component {
               </div>
               <div className="auth-box__input-wrapper">
                 <label ref={this.urlLabel} htmlFor="url">URL:</label>
-                <input style={{paddingLeft: `${urlLabelWidth}px`}} onChange={handleChange} value={url} type="text" name="url" id="url"/>
+                <input style={{paddingLeft: `${urlLabelWidth}px`}} onChange={handleChange} value={url} type="url" name="url" id="url"/>
               </div>
               <button type="submit">Submit Link</button>
             </form>
