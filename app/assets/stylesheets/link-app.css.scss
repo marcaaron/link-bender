@@ -136,7 +136,7 @@ body {
         max-height: 50px;
       }
       &:hover::after{
-        max-width: 300px;
+        max-width: 800px;
       }
       &:hover{
         background: transparent;
@@ -405,6 +405,7 @@ $btn-height: 1.5em;
 .footer-nav {
   z-index: 9999999;
   position: fixed;
+  width:100%;
   max-width: 450px;
   bottom:0;
   display: flex;
