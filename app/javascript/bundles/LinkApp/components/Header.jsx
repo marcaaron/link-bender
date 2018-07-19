@@ -56,7 +56,7 @@ class Header extends Component {
         <h1 className="main-header">
           <ErrorMessage/>
           <div>
-            <Link to="/"><p>Link Blender</p></Link>
+            <Link to="/"><p>Link Bender</p></Link>
             <div onClick={handleClick}>{token ? <LogOutBtn/> : <LogInBtn/> }</div>
           </div>
         </h1>
