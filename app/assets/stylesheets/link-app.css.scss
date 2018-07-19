@@ -12,9 +12,8 @@ body {
   margin:0 auto;
   background-color: white;
   max-width: 320px;
-  // min-height: calc(100vh);
+  height: 95vh;
   position:relative;
-  height: 550px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -52,6 +51,8 @@ body {
 .main-container {
   flex: 1;
   margin-bottom: $footer-height;
+  height:100%;
+  overflow: scroll;
 }
 
 .signup-form, .login-form, .link-form {
